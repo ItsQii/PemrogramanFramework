@@ -4,17 +4,19 @@ type AppShellProps = {
   children: React.ReactNode;
 }
 
-const AppShell = (props: AppShellProps) => {
-  const { children } = props;
-  
+const AppShell = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main>
-      <Navbar />
-      {children}
-      <div>
-        footer
-      </div>
-    </main>
+    <div className="layout">
+      <div className="navbar">Navbar</div>
+
+      <main className="content">
+        {children}
+      </main>
+
+      <footer className="footer">
+        © 2026 Praktikum Framework
+      </footer>
+    </div>
   );
 };
 
