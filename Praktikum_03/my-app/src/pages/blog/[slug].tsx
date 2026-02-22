@@ -7,7 +7,7 @@ const BlogDetail = () => {
   return (
     <div>
       <h1>Halaman Blog</h1>
-      <p>Slug: {slug}</p>
+      <p>{slug}</p>
     </div>
   );
 };
