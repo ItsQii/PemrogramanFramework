@@ -5,6 +5,7 @@ const halamanLogin = () => {
   const router = useRouter();
 
   const handleLogin = () => {
+    sessionStorage.setItem("login", "true");
     router.push("/produk");
   };
 
