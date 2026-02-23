@@ -2,26 +2,21 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 const halamanLogin = () => {
-  const { push } = useRouter();
+  const router = useRouter();
 
   const handleLogin = () => {
-    // logic login disini
-    push("/produk");
+    router.push("/produk");
   };
 
   return (
     <div>
       <h1>Halaman Login</h1>
 
-      <button onClick={handleLogin}>Login1</button> <br />
+      <button onClick={handleLogin}>
+        Login
+      </button>
 
-      <button onClick={() => push("/produk")}>
-        Login2
-      </button> <br />
-
-      <button onClick={() => handleLogin()}>
-        Login3
-      </button> <br />
+      <br /><br />
 
       <Link href="/auth/register">Ke Halaman Register</Link>
     </div>
