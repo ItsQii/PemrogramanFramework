@@ -2,12 +2,12 @@ import Navbar from "../navbar";
 
 type AppShellProps = {
   children: React.ReactNode;
-}
+};
 
-const AppShell = ({ children }: { children: React.ReactNode }) => {
+const AppShell = ({ children }: AppShellProps) => {
   return (
     <div className="layout">
-      <div className="navbar">Navbar</div>
+      <Navbar />
 
       <main className="content">
         {children}
