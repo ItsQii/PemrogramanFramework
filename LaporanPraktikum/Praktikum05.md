@@ -42,6 +42,10 @@
 
 ![globalcss](https://github.com/user-attachments/assets/708aa309-0e68-42cb-9cb8-b7ffe0a1c787)
 
+![](https://github.com/user-attachments/assets/625eb6d1-23b7-481c-9e77-e92a4bf7019e)
+
+
+
 ## 8. SASS
 
 ![SASS](https://github.com/user-attachments/assets/5a4b6d17-093f-471d-8791-8e870ebf7a69)
