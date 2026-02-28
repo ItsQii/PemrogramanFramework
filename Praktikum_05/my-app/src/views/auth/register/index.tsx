@@ -3,7 +3,7 @@ import styles from "./register.module.css";
 
 const TampilanRegister = () => {
   return (
-    <div className={`${styles.container} bg-gray-100`}>
+    <div className={styles.container}>
       <div className={`${styles.card} rounded-lg`}>
         <h1 className={`${styles.title} text-2xl font-bold`}>
           Halaman Register
@@ -12,13 +12,13 @@ const TampilanRegister = () => {
         <input
           type="text"
           placeholder="Username"
-          className={`${styles.input} border rounded-md p-2 mb-3`}
+          className={`${styles.input} border rounded-md mb-2`}
         />
 
         <input
           type="password"
           placeholder="Password"
-          className={`${styles.input} border rounded-md p-2`}
+          className={`${styles.input} border rounded-md`}
         />
 
         <button
