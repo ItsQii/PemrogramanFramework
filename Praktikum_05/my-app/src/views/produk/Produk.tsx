@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import HeroSection from "./HeroSection";
+import MainSection from "./MainSection";
 
-const produk = () => {
+const Produk = () => {
   const router = useRouter();
 
   useEffect(() => {
@@ -13,8 +15,12 @@ const produk = () => {
   }, [router]);
 
   return (
-    <div>Produk User Page</div>
+    <>
+    <HeroSection />
+    <MainSection />
+    </>
+    
   );
 };
 
-export default produk;
+export default Produk;

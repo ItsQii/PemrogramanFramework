@@ -1,4 +1,4 @@
-import TampilanProduk from "../../views/produk";
+import TampilanProduk from "../../views/produk/Produk";
 
 const ProdukPage = () => {
   return <TampilanProduk />;
