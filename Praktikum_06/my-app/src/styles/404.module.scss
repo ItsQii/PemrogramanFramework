@@ -26,4 +26,18 @@
     font-size: 18px;
     opacity: 0.8;
   }
+   &__button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #38bdf8;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s ease;
+  }
+
+  &__button:hover {
+    background-color: #0ea5e9;
+  }
 }
