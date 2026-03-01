@@ -7,6 +7,7 @@ const TampilanLogin = () => {
   const { push } = useRouter();
 
   const handleLogin = () => {
+    sessionStorage.setItem("login", "true");
     push("/produk");
   };
 
