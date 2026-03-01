@@ -20,5 +20,10 @@
 
 ![img](https://github.com/user-attachments/assets/d30c3cff-ac41-4e1b-af53-1d98301dfa8a)
 
+## 5. menampilkan gambar dari folder public
+
+![gambar](https://github.com/user-attachments/assets/72d71984-c2f1-4bc8-963f-759d887fbf3c)
+
+![code](https://github.com/user-attachments/assets/71e1f663-838e-4259-86e5-415da845a72c)
 
 
