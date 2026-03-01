@@ -12,5 +12,13 @@
 
 ![hasil](https://github.com/user-attachments/assets/e0e7bdd0-dd6b-44a0-9e92-572fee058c3e)
 
+## 4. Styling 404
+
+![code](https://github.com/user-attachments/assets/a4a4576f-3e6c-40fe-aefe-10cd00a8e208)
+
+![code](https://github.com/user-attachments/assets/05242a4d-4008-401b-9368-3267e009db52)
+
+![img](https://github.com/user-attachments/assets/d30c3cff-ac41-4e1b-af53-1d98301dfa8a)
+
 
 
