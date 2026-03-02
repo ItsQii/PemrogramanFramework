@@ -40,5 +40,15 @@
 
 ## Pertanyaan Refleksi
 1. Apa fungsi API Routes pada Next.js?
-   Jawab: 
+   Jawab: berfungsi sebagai backend atau jembatan antara frontend dan databse, juga berfungsi mengelola data di sisi server
+
+2. Mengapa .env.local tidak boleh di-push ke repository?
+   Jawab: karena file ini menyimpan environment variables yg bersifat privasi jadi jika kita push ke repository maka itu akan berbahaya karena bisa dilihat oleh org lain
+
+3. Apa perbedaan data statis dan data dinamis?
+   Jawab: data statis adalah data yg bersifat fixed, yg datanya diedit di source code, sedangkan data dinamis adalah data yg disimpan di database management ssystem dan
+   datanya bersifat volatile dan bisa diperbarui secara realtime
+
+4. Mengapa Next.js disebut framework fullstack?
+   Jawab: karnena nextjs bisa menangani dua layer aplikasi seperti clinent side untuk mengelola UI nya lalu server side untuk databse melalui API
 
