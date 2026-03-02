@@ -1,28 +1,29 @@
 import Link from "next/link";
 
-const MainSection = () => {
+// Sesuaikan typenya agar tidak error
+type ProductType = {
+  id: string;
+  name: string;
+  price: number;
+  size: string;
+};
+
+// Terima props 'products' di sini
+const MainSection = ({ products }: { products: ProductType[] }) => {
   return (
     <section className="p-10">
-      <h2 className="text-2xl font-semibold mb-6">
-        Daftar Produk
-      </h2>
+      <h2 className="text-2xl font-semibold mb-6">Daftar Produk</h2>
 
       <ul className="space-y-3">
-        <li>
-          <Link href="/produk/1" className="text-blue-500 underline">
-            Laptop
-          </Link>
-        </li>
-        <li>
-          <Link href="/produk/2" className="text-blue-500 underline">
-            Mouse
-          </Link>
-        </li>
-        <li>
-          <Link href="/produk/3" className="text-blue-500 underline">
-            Keyboard
-          </Link>
-        </li>
+        {products.map((product) => (
+          <li key={product.id} className="border-b pb-4">
+            <Link href={`/produk/${product.id}`} className="text-blue-500 underline font-bold text-xl">
+              {product.name}
+            </Link>
+            <p className="text-gray-600">Harga: Rp {product.price.toLocaleString()}</p>
+            <p className="text-gray-600">Ukuran: {product.size}</p>
+          </li>
+        ))}
       </ul>
     </section>
   );
