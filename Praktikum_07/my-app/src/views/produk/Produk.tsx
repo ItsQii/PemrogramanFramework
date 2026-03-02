@@ -39,7 +39,6 @@ const Produk = () => {
       
       <MainSection products={products} />
 
-      {/* Daftar manual di sini sudah dihapus agar tampilan tidak dobel */}
     </>
   );
 };
