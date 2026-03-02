@@ -6,6 +6,7 @@ type ProductType = {
   name: string;
   price: number;
   size: string;
+  category: string;
 };
 
 // Terima props 'products' di sini
@@ -15,15 +16,18 @@ const MainSection = ({ products }: { products: ProductType[] }) => {
       <h2 className="text-2xl font-semibold mb-6">Daftar Produk</h2>
 
       <ul className="space-y-3">
-        {products.map((product) => (
-          <li key={product.id} className="border-b pb-4">
-            <Link href={`/produk/${product.id}`} className="text-blue-500 underline font-bold text-xl">
-              {product.name}
-            </Link>
-            <p className="text-gray-600">Harga: Rp {product.price.toLocaleString()}</p>
-            <p className="text-gray-600">Ukuran: {product.size}</p>
-          </li>
-        ))}
+        {products.map((product: ProductType) => (
+  <div key={product.id} className="p-4 border-b mb-4">
+    <h2 className="text-xl font-bold">{product.name}</h2>
+
+    <p className="text-sm text-blue-500 font-semibold uppercase">
+      Kategori: {product.category}
+    </p>
+    
+    <p>Harga: Rp {product.price?.toLocaleString('id-ID')}</p>
+    <p>Ukuran: {product.size}</p>
+  </div>
+))}
       </ul>
     </section>
   );
