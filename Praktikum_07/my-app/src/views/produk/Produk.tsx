@@ -5,10 +5,9 @@ import MainSection from "./MainSection";
 
 type ProductType = {
   id: string;
-  nama: string;
-  harga: number;
-  ukuran: string;
-  warna: string;
+  name: string;
+  price: number;
+  size: string;
 };
 
 const Produk = () => {
@@ -44,10 +43,9 @@ const Produk = () => {
         <h1>Daftar Produk</h1>
         {products.map((product: ProductType) => (
           <div key={product.id} style={{ marginBottom: '10px', borderBottom: '1px solid #ccc' }}>
-            <h2>{product.nama}</h2>
-            <p>Harga: {product.harga}</p>
-            <p>Ukuran: {product.ukuran}</p>
-            <p>Warna: {product.warna}</p>
+            <h2>{product.name}</h2>
+            <p>Harga: {product.price}</p>
+            <p>Ukuran: {product.size}</p>
           </div>
         ))}
       </div>
