@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import HeroSection from "./HeroSection";
 import MainSection from "./MainSection";
+import useSWR from "swr";
 
 type ProductType = {
   id: string;
@@ -17,10 +18,14 @@ const Produk = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
 
   const fetchData = () => {
+    setProducts([]);
+
     fetch("/api/produk")
       .then((response) => response.json())
       .then((responsedata) => {
-        setProducts(responsedata.data); 
+        setTimeout(() => {
+          setProducts(responsedata.data); 
+        }, 1000); 
       })
       .catch((error) => {
         console.error("Error fetching produk:", error);
