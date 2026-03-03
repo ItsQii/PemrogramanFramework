@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import useSWR, { useSWRConfig } from "swr"; 
 import HeroSection from "./HeroSection";
 import MainSection from "./MainSection";
-import useSWR from "swr";
 
 type ProductType = {
   id: string;
@@ -13,24 +13,14 @@ type ProductType = {
   image: string;
 };
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 const Produk = () => {
   const router = useRouter();
-  const [products, setProducts] = useState<ProductType[]>([]);
 
-  const fetchData = () => {
-    setProducts([]);
+  const { mutate } = useSWRConfig();
 
-    fetch("/api/produk")
-      .then((response) => response.json())
-      .then((responsedata) => {
-        setTimeout(() => {
-          setProducts(responsedata.data); 
-        }, 1000); 
-      })
-      .catch((error) => {
-        console.error("Error fetching produk:", error);
-      });
-  };
+  const { data, error, isLoading } = useSWR("/api/produk", fetcher);
 
   useEffect(() => {
     const isLogin = sessionStorage.getItem("login");
@@ -39,15 +29,11 @@ const Produk = () => {
     }
   }, [router]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   return (
     <>
-      <HeroSection onRefresh={fetchData} />
+      <HeroSection onRefresh={() => mutate("/api/produk")} />
 
-      <MainSection products={products} />
+      <MainSection products={isLoading ? [] : data?.data || []} />
     </>
   );
 };
