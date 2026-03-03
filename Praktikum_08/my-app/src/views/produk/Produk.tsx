@@ -19,7 +19,7 @@ const Produk = () => {
 
   const { mutate } = useSWRConfig();
 
-  const { data, error, isLoading } = useSWR("/api/produk", fetcher);
+const { data, error, isLoading, isValidating } = useSWR("/api/produk", fetcher);
 
   useEffect(() => {
     const isLogin = sessionStorage.getItem("login");
@@ -32,7 +32,7 @@ const Produk = () => {
     <>
       <HeroSection onRefresh={() => mutate("/api/produk")} />
 
-      <MainSection products={isLoading ? [] : data?.data || []} />
+      <MainSection products={(isLoading || isValidating) ? [] : data?.data || []} />
     </>
   );
 };
