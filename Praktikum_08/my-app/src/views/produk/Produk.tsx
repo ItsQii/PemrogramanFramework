@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import useSWR, { useSWRConfig } from "swr"; 
 import HeroSection from "./HeroSection";
 import MainSection from "./MainSection";
+import fetcher from "@/pages/utils/swr/fetcher";
 
 type ProductType = {
   id: string;
@@ -12,8 +13,6 @@ type ProductType = {
   category: string;
   image: string;
 };
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Produk = () => {
   const router = useRouter();
