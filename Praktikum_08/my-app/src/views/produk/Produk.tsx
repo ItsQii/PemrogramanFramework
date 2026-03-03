@@ -7,8 +7,9 @@ type ProductType = {
   id: string;
   name: string;
   price: number;
-  size: string;
+  size: number;
   category: string;
+  image: string;
 };
 
 const Produk = () => {
@@ -40,7 +41,7 @@ const Produk = () => {
   return (
     <>
       <HeroSection onRefresh={fetchData} />
-      
+
       <MainSection products={products} />
     </>
   );

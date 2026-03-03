@@ -1,34 +1,43 @@
 import Link from "next/link";
+// Import file scss kamu di sini
+import styles from "./produk.module.scss";
 
-// Sesuaikan typenya agar tidak error
 type ProductType = {
   id: string;
   name: string;
   price: number;
-  size: string;
+  size: number;
   category: string;
+  image: string;
 };
 
-// Terima props 'products' di sini
 const MainSection = ({ products }: { products: ProductType[] }) => {
   return (
-    <section className="p-10">
-      <h2 className="text-2xl font-semibold mb-6">Daftar Produk</h2>
+    <section className={styles.produk}>
+      <h2 className={styles.produk__title}>Daftar Produk</h2>
 
-      <ul className="space-y-3">
+      <div className={styles.produk__content}>
         {products.map((product: ProductType) => (
-  <div key={product.id} className="p-4 border-b mb-4">
-    <h2 className="text-xl font-bold">{product.name}</h2>
-
-    <p className="text-sm text-blue-500 font-semibold uppercase">
-      Kategori: {product.category}
-    </p>
-    
-    <p>Harga: Rp {product.price?.toLocaleString('id-ID')}</p>
-    <p>Ukuran: {product.size}</p>
-  </div>
-))}
-      </ul>
+          <div key={product.id} className={styles.produk__item}>
+            <img
+              src={product.image}
+              alt={product.name}
+              className={styles.produk__item__image}
+            />
+            <h2 className={styles.produk__item__name}>{product.name}</h2>
+            <p className={styles.produk__item__category}>{product.category}</p>
+            <p className={styles.produk__item__price}>
+              Rp {product.price?.toLocaleString("id-ID")}
+            </p>
+            <Link
+              href={`/produk/${product.id}`}
+              className={styles.produk__item__link}
+            >
+              Lihat Detail
+            </Link>
+          </div>
+        ))}
+      </div>
     </section>
   );
 };
