@@ -11,6 +11,8 @@
 
 ## Langkah 4 Pengujian Data
 1. Tambah data di database
+   ![pict](https://github.com/user-attachments/assets/426381a5-d7e4-4e89-85c5-58a59edfdfd2)
+
    A. CSR bertambah
 
    ![CSR](https://github.com/user-attachments/assets/47140650-34e0-4105-aa67-4ce267c63b33)
@@ -23,7 +25,7 @@
 
    ![SSG](https://github.com/user-attachments/assets/c60359f5-d296-46a7-af6b-d118af880629)
 
-2. Build Ulang
+3. Build Ulang
    ![SSG](https://github.com/user-attachments/assets/bae482a5-4088-4696-a035-bb812aaff980)
 
 ## Tugas Praktikum
