@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import useSWR, { useSWRConfig } from "swr"; 
 import HeroSection from "./HeroSection";
 import MainSection from "./MainSection";
-import fetcher from "@/pages/utils/swr/fetcher";
+import fetcher from "@/utils/swr/fetcher";
 
 type ProductType = {
   id: string;
