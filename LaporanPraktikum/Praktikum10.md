@@ -1,6 +1,4 @@
 ## Langkah 1 Setup Halaman Static
-![code](https://github.com/user-attachments/assets/b4159409-4557-449c-a030-6fe7e8d6da26)
-
 ![code](https://github.com/user-attachments/assets/857dacd0-da60-41ea-8039-5a1a8b17fd0a)
 
 ## Langkah 3 Build Production
