@@ -14,7 +14,6 @@ const halamanProdukStatic = (props: { products: ProductType[] }) => {
 export default halamanProdukStatic;
 
 export async function getStaticProps() {
-  // Mengambil data dari API saat proses build
   const res = await fetch("http://localhost:3000/api/produk");
   const response = await res.json();
 
