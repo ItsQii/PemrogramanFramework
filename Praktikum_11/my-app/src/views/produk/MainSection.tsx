@@ -19,24 +19,25 @@ const MainSection = ({ products }: { products: ProductType[] }) => {
         {products.length > 0 ? (
           <>
             {products.map((product: ProductType) => (
-              <div key={product.id} className={styles.produk__item}>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className={styles.produk__item__image}
-                />
+              <Link 
+                href={`/produk/${product.id}`} 
+                key={product.id} 
+                className={styles.produk__item}
+              >
+                <div className={styles.produk__item__image_container}>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className={styles.produk__item__image}
+                    width={200}
+                  />
+                </div>
                 <h2 className={styles.produk__item__name}>{product.name}</h2>
                 <p className={styles.produk__item__category}>{product.category}</p>
                 <p className={styles.produk__item__price}>
                   Rp {product.price?.toLocaleString("id-ID")}
                 </p>
-                <Link
-                  href={`/produk/${product.id}`}
-                  className={styles.produk__item__link}
-                >
-                  Lihat Detail
-                </Link>
-              </div>
+              </Link>
             ))}
           </>
         ) : (
