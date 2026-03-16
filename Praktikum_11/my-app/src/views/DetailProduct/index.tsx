@@ -3,6 +3,11 @@ import { ProductType } from "@/types/Product.type";
 import styles from "./detailProduct.module.scss";
 
 const DetailProduk = ({ product }: { product: ProductType }) => {
+  // Tambahkan pengecekan ini
+  if (!product) {
+    return <div className={styles.produkdetail}>Produk tidak ditemukan atau sedang dimuat...</div>;
+  }
+
   return (
     <div className={styles.produkdetail}>
       <h1 className={styles.produkdetail__title}>Detail Produk</h1>
@@ -25,7 +30,7 @@ const DetailProduk = ({ product }: { product: ProductType }) => {
             {product.category}
           </p>
           <p className={styles.produkdetail__main__right__price}>
-            {/* Menggunakan toLocaleString untuk format Rupiah */}
+            {/* Menggunakan opsional chaining (?) berjaga-jaga jika price undefined */}
             Rp {product.price?.toLocaleString("id-ID")}
           </p>
         </div>
