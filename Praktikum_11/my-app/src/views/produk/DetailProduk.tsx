@@ -5,21 +5,6 @@ import useSWR from "swr";
 import DetailProduk from "@/views/DetailProduct"; 
 
 const HalamanDetailProduk = ({ product }: { product: any }) => {
-
-  // digunakan client-side rendering
-  // const { query } = useRouter();
-
-  // const { data, error, isLoading } = useSWR(
-  //   query.id ? `/api/produk/${query.id}` : null,
-  //   fetcher
-  // );
-
-  // return (
-  //   <div>
-  //     <DetailProduk product={isLoading ? {} : data?.data} />
-  //   </div>
-  // );
-
   return (
     <div>
       <DetailProduk product={product} />
@@ -29,11 +14,37 @@ const HalamanDetailProduk = ({ product }: { product: any }) => {
 
 export default HalamanDetailProduk;
 
+// --- STATIC SITE GENERATION (SSG) ---
 
-// Fungsi getServerSideProps akan dipanggil setiap kali halaman ini diakses
-// dan akan mengambil data produk dari API sebelum merender halaman.
+export async function getStaticPaths() {
+  const res = await fetch('http://localhost:3000/api/products');
+  const response = await res.json();
+
+  // Mapping data untuk mendapatkan array of paths
+  const paths = response.data.map((product: any) => ({
+    params: { id: product.id.toString() } // Pastikan ID berupa string dan menggunakan 'id'
+  }));
+
+  return {
+    paths,
+    fallback: false 
+  };
+}
+
+export async function getStaticProps({ params }: { params: { id: string } }) {
+  const res = await fetch(`http://localhost:3000/api/produk/${params.id}`);
+  const response = await res.json();
+
+  return {
+    props: {
+      product: response.data,
+    },
+
+  };
+}
+
+/* // --- SERVER SIDE RENDERING (SSR) ---
 export async function getServerSideProps({ params }: { params: { id: string } }) {
-
   const res = await fetch(`http://localhost:3000/api/produk/${params.id}`);
   const response = await res.json();
 
@@ -43,3 +54,4 @@ export async function getServerSideProps({ params }: { params: { id: string } })
     },
   };
 }
+*/
