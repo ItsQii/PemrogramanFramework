@@ -26,8 +26,10 @@
 
 ## Pengujian Manual Revalidation
 token benar
+
 ![](https://github.com/user-attachments/assets/de32a03b-d552-46e7-837d-101cc6c03390)
 
 token salah
+
 ![](https://github.com/user-attachments/assets/78afc879-03c5-4225-b3e6-c7686dcf676f)
 
