@@ -18,7 +18,7 @@ const Navbar = () => {
             </div>
             <button
               className={`${styles.navbar__button} ${styles["navbar__button--danger"]}`}
-              onClick={() => signOut()}
+              onClick={() => signOut({ callbackUrl: "/" })}
             >
               Sign Out
             </button>
@@ -26,7 +26,7 @@ const Navbar = () => {
         ) : (
           <button
             className={`${styles.navbar__button} ${styles["navbar__button--primary"]}`}
-            onClick={() => signIn()}
+            onClick={() => signIn(undefined, { callbackUrl: "/profile" })} 
           >
             Sign In
           </button>
