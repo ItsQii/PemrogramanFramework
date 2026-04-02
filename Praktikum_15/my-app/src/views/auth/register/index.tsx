@@ -4,12 +4,13 @@ import { useState } from "react";
 import style from "../../auth/register/register.module.scss";
 
 const TampilanRegister = () => {
-  // --- MULAI BAGIAN TAMBAHAN DARI GAMBAR ---
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(""); // <-- TAMBAHAN: State untuk menampung pesan error
   const { push } = useRouter();
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    setError(""); 
     setIsLoading(true);
     
     const data = {
@@ -18,7 +19,14 @@ const TampilanRegister = () => {
       password: event.target.password.value,
     };
 
-    const result = await fetch("/api/auth/register", {
+    if (data.password.length < 6) {
+    setError("Password must be at least 6 characters");
+    return;
+  }
+
+  setIsLoading(true);
+
+    const response = await fetch("/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,20 +34,25 @@ const TampilanRegister = () => {
       body: JSON.stringify(data),
     });
 
-    if (result.status === 200) {
+    if (response.status === 200) {
       event.target.reset();
       setIsLoading(false);
       push("/auth/login");
     } else {
       setIsLoading(false);
+      // Sesuai gambar modul:
+      setError(
+        response.status === 400 ? "Email already exists" : "An error occurred"
+      );
     }
   };
 
   return (
     <div className={style.register}>
       <h1 className={style.register__title}>Halaman Register</h1>
+      {error && <p className={style.register__error}>{error}</p>}
+      
       <div className={style.register__form}>
-        {/* TAMBAHAN: Mengubah action="" menjadi onSubmit={handleSubmit} */}
         <form onSubmit={handleSubmit}>
           <div className={style.register__form__item}>
             <label
@@ -67,7 +80,7 @@ const TampilanRegister = () => {
             <input
               type="text"
               id="fullname"
-              name="fullname" // (Catatan: Huruf F saya buat kecil agar cocok dengan event.target.fullname.value di atas)
+              name="fullname"
               placeholder="Fullname"
               className={style.register__form__item__input}
             />
@@ -83,14 +96,13 @@ const TampilanRegister = () => {
             <input
               type="password"
               id="password"
-              name="password" // (Huruf P saya buat kecil agar cocok dengan kode di atas)
+              name="password"
               placeholder="Password"
               className={style.register__form__item__input}
             />
           </div>
 
           <button type="submit" className={style.register__form__item__button}>
-            {/* TAMBAHAN: Teks tombol berubah otomatis saat loading */}
             {isLoading ? "Loading..." : "Register"}
           </button>
         </form>

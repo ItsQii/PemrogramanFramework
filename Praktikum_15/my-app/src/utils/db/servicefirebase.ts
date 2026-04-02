@@ -5,10 +5,11 @@ import {
   getDoc,
   doc,
   query,
-  addDoc,
   where,
+  addDoc,
 } from "firebase/firestore";
 import app from "./firebase";
+import bcrypt from "bcrypt";
 
 const db = getFirestore(app);
 
@@ -22,47 +23,64 @@ export async function retrieveProducts(collectionName: string) {
   return data;
 }
 
-export async function retrieveDataByID(collectionName: string, id: string) {
+export async function retrieveDataById(collectionName: string, id: string) {
   const snapshot = await getDoc(doc(db, collectionName, id));
   const data = snapshot.data();
+
   return data;
 }
 
-// === TAMBAHAN BARU: FUNGSI SIGN UP ===
-export async function signUp(
-  userData: {
-    email: string;
-    fullname: string;
-    password: string; // (Note: Di dunia nyata password harus di-hash, tapi kita ikuti modul dulu)
-  },
-  callback: Function
-) {
-  // 1. Mencari apakah ada user di database yang emailnya sama dengan yang diinput
-  const q = query(
-    collection(db, "users"),
-    where("email", "==", userData.email)
-  );
-  
+export async function signIn(email: string) {
+  const q = query(collection(db, "users"), where("email", "==", email));
   const querySnapshot = await getDocs(q);
   const data = querySnapshot.docs.map((doc) => ({
     id: doc.id,
     ...doc.data(),
   }));
-  // console.log("Query result:", data);
 
-  // 2. Logika Pengecekan
-  if (data.length === 0) {
-    // Jika length === 0 (user belum ada) -> boleh daftar
-    await addDoc(collection(db, "users"), userData);
-    callback({
-      status: true,
-      message: "Register success",
-    });
+  if (data) {
+    return data[0];
   } else {
-    // Jika data ada isinya -> email sudah terdaftar
+    return null;
+  }
+}
+
+export async function signUp(userData: any, callback: Function) {
+  const q = query(
+    collection(db, "users"),
+    where("email", "==", userData.email)
+  );
+
+  const snapshot = await getDocs(q);
+  const data = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+
+  if (data.length > 0) {
+    // Kirim object error jika email sudah ada
     callback({
       status: false,
-      message: "User already exists",
+      message: "Email already exists",
     });
+  } else {
+    userData.password = await bcrypt.hash(userData.password, 10);
+    userData.role = "member";
+    
+    await addDoc(collection(db, "users"), userData)
+      .then(() => {
+        // Kirim object success
+        callback({
+          status: true,
+          message: "User registered successfully",
+        });
+      })
+      .catch((error: any) => {
+        // Kirim object error jika database bermasalah
+        callback({
+          status: false,
+          message: error.message,
+        });
+      });
   }
 }

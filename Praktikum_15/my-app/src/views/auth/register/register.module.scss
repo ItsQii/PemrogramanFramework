@@ -15,7 +15,13 @@
     color: #ffffff;
     margin-bottom: 40px;
   }
-
+  
+  &__error {
+    color: red;
+    font-family: 14px;
+    margin-top: 1px;
+  }
+  
   &__form {
     background: #ffffff;
     width: 100%;
@@ -68,6 +74,7 @@
       }
     }
   }
+
 }
 
 /* Animation */
