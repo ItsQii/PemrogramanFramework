@@ -56,7 +56,8 @@ Buat Halaman Profile
 ![](https://github.com/user-attachments/assets/67829a10-9674-4b4a-b080-2a5e793cf6a7)
 
 Buat Middleware Authorization
-![](https://github.com/user-attachments/assets/925cd8fe-eae6-4400-9649-e4dea7462ae)
+![](https://github.com/user-attachments/assets/19eaf86b-f0f1-4c26-bdb1-f8d3d22425ad)
+
 
 Pengujian
 Uji 1 - Belum Login
