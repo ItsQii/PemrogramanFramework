@@ -52,6 +52,9 @@ token salah
 2. Apa perbedaan revalidate waktu dan on-demand?
    Jawab: revalidate menggunakan countdown waktu , jadi data akan diperbarui setelah lewat waktu yg ditentukan sedangkan on demand itu updatenya manual dipicu dengan API jadi halamannya bisa diperbarui
    langsung saat itu juga
-4. Mengapa endpoint revalidation harus diamankan?
-5. Apa risiko jika token tidak digunakan?
-6. Kapan ISR lebih cocok dibanding SSR?
+3. Mengapa endpoint revalidation harus diamankan?
+   Jawab: karena endpoint bisa mentrigger update halaman jika tidak diamankan orang lain bisa mengaksesnya dan menjalankan proses tadi berkali kali dan membuat server terbebani
+4. Apa risiko jika token tidak digunakan?
+   Jawab: jika tidak digunakan maka endpointnya menjadi publik dan bisa diakses orang lain an menjalankan proses tadi berkali kali dan membuat server terbebani
+5. Kapan ISR lebih cocok dibanding SSR?
+   Jawab: saat data yg dipakai tidak perlu selalu update atau realtime seperti blog atau katalog produk
