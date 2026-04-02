@@ -51,12 +51,14 @@
    Jawab: sudah dilakukan di praktikum diatas
 
 2. buat tabel perbandingan
-| Aspek | CSR | SSR | SSG |
-| :--- | :--- | :--- | :--- |
-| **Loading** | Ada (terlihat saat fetch data di klien) | Tidak ada (halaman langsung tampil dengan data) | Tidak ada (paling cepat karena halaman sudah statis) |
-| **Build Required** | Tidak | Tidak | Ya |
-| **SEO** | Kurang | Baik | Sangat Baik |
-| **Perubahan Data** | Langsung tampil (Real-time) | Langsung tampil (Real-time) | Harus *Build* ulang agar data baru muncul |
+## Perbandingan CSR, SSR, dan SSG
+
+| Aspek            | CSR                                      | SSR                                      | SSG                                              |
+|------------------|------------------------------------------|------------------------------------------|--------------------------------------------------|
+| Loading          | Ada (fetch di klien)                     | Tidak ada (data langsung tampil)         | Tidak ada (paling cepat, halaman statis)         |
+| Build Required   | Tidak                                    | Tidak                                    | Ya                                               |
+| SEO              | Kurang                                   | Baik                                     | Sangat Baik                                      |
+| Perubahan Data   | Langsung tampil (real-time)              | Langsung tampil (real-time)              | Harus build ulang agar data baru muncul          |
 
 3. Dokumentasi sudah ada diatas
 
