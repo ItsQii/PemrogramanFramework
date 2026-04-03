@@ -40,17 +40,64 @@
 
 Pengujian
 Uji 1 - Login Valid
+
 ![](https://github.com/user-attachments/assets/210ea0c6-7871-4b5e-b51a-3b9568bb6cf0)
 
 ![](https://github.com/user-attachments/assets/cfe88173-12c0-4f55-8bf7-5354d4bf03bd)
 
 Uji 2 – Password Salah
+
 ![](https://github.com/user-attachments/assets/0b42d62c-a658-4ad8-a20a-065bcf795219)
 
 Uji 3 - Akses Admin sebagai User
+
 <video src="https://github.com/user-attachments/assets/c2479e58-61c7-4355-847f-594311934fbc" width="100%" autoplay muted loop></video>
 
 Uji 4 – Akses Admin sebagai Admin
+
 ![](https://github.com/user-attachments/assets/fe7ae048-f52d-47fa-bece-d8d6a5cc58bd)
 
 <video src="https://github.com/user-attachments/assets/1bca8616-a6b4-4a99-8804-d5d95d055d39" width="100%" autoplay muted loop></video>
+
+## Tugas Praktikum
+1. Implementasikan login database
+
+   ![](https://github.com/user-attachments/assets/9cec2d8e-bf23-4401-acd3-d06e6d777c9b)
+
+2. Tambahkan role pada user
+
+   ![](https://github.com/user-attachments/assets/2d12d74e-ba36-46c2-822e-a12af3fd6168)
+
+3. Buat halaman
+
+   Profile
+
+   ![](https://github.com/user-attachments/assets/46433107-7afc-4bfa-bd7b-442aa42225ed)
+
+   Admin
+
+   ![](https://github.com/user-attachments/assets/c1248ab1-6696-4920-8cc5-c415b8e9d541)
+
+4. Proteksi /admin hanya untuk admin
+
+   ![](https://github.com/user-attachments/assets/513dda55-66ca-4801-8e23-e2f66354cf69)
+
+5. Implementasikan callback URL
+
+   ![](https://github.com/user-attachments/assets/cf024257-456e-4387-92ea-f5eedeb7f19f)
+
+H. Pertanyaan Analisis
+1. Mengapa password harus diverifikasi dengan bcrypt.compare?
+   Jawab: karena di database password tidak bisa disimpan sebagai teks biasa tapi dalam bentuk hash
+2. Mengapa role disimpan di token?
+   Jawab: agar query nya tidak berulang setiap pindah halaman harus cek ke databse untuk verifikasi role
+3. Apa fungsi callbackUrl?
+   Jawab: untuk menavigasi user setelah login user akan diarahkan ke halaman yg dia tuju di awal
+4. Mengapa middleware penting untuk security?
+   Jawab: karena melalui middleware kita bisa memakai kode security untuk beberapa halaman sekaligus, dan juga karena middlewar itu berjalan sebelum halaman di render jadi jika user tidak
+   punya akses maka akan langsung terlempar
+5. Apa risiko jika role tidak dicek di middleware?
+   Jawab: maka user yg role nya cuma member bisa mengakses admin atau role lain lewat alamat browser seperti localhost:3000/admin dan mencuri data dll
+
+
+
