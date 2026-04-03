@@ -1,10 +1,16 @@
-
 import { getToken } from "next-auth/jwt";
-import { NextFetchEvent, NextMiddleware, NextRequest, NextResponse } from "next/server";
+import {
+  NextFetchEvent,
+  NextMiddleware,
+  NextRequest,
+  NextResponse,
+} from "next/server";
+
+const hanyaAdmin = ["/admin"];
 
 export default function withAuth(
   middleware: NextMiddleware,
-  requireAuth: string[] = [],
+  requireAuth: string[] = []
 ) {
   return async (req: NextRequest, next: NextFetchEvent) => {
     const pathname = req.nextUrl.pathname;
@@ -16,11 +22,21 @@ export default function withAuth(
       });
 
       if (!token) {
+        if (pathname.startsWith("/profile")) {
+          return NextResponse.redirect(new URL("/", req.url));
+        }
+        // Selain profile, lempar ke login
         const Url = new URL("/auth/login", req.url);
         Url.searchParams.set("callbackUrl", encodeURI(req.url));
         return NextResponse.redirect(Url);
       }
+
+      // JIKA SUDAH LOGIN TAPI BUKAN ADMIN (Akses /admin)
+      if (token.role !== "admin" && hanyaAdmin.includes(pathname)) {
+        return NextResponse.redirect(new URL("/", req.url));
+      }
     }
+    
     return middleware(req, next);
   };
 }

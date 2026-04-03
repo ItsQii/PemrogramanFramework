@@ -6,17 +6,16 @@ import fetcher from "../../utils/swr/fetcher";
 
 const ProdukPage = () => {
   const router = useRouter();
-  const [products, setProducts] = useState([]);
+  
+  // HAPUS BAGIAN INI:
+  // useEffect(() => {
+  //   const isLogin = sessionStorage.getItem("login");
+  //   if (!isLogin) {
+  //     router.push("/auth/login");
+  //   }
+  // }, [router]);
 
   const { data, error, isLoading } = useSWR("/api/produk", fetcher);
-
-  // login check
-  useEffect(() => {
-    const isLogin = sessionStorage.getItem("login");
-    if (!isLogin) {
-      router.push("/auth/login");
-    }
-  }, [router]);
 
   return (
     <div>
