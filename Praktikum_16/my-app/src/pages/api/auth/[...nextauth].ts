@@ -12,49 +12,48 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        // fullname: { label: "Full Name", type: "text" }, // Di-comment sesuai gambar
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // 1. Validasi input email dan password
+        // 1. Validasi input kosong
         if (!credentials?.email || !credentials?.password) {
-          return null;
+          throw new Error("Email dan Password wajib diisi!");
         }
 
         // 2. Cari user di database berdasarkan email
         const user: any = await signIn(credentials.email);
 
         if (user) {
-          // 3. Cek apakah password yang diinput cocok dengan password di database (hash)
+          // 3. Cek apakah password cocok
           const isPasswordValid = await bcrypt.compare(
             credentials.password,
             user.password
           );
 
           if (isPasswordValid) {
-            // 4. Jika valid, kembalikan object user yang bersih (tanpa password)
             return {
               id: user.id,
               email: user.email,
               fullname: user.fullname,
               role: user.role,
             };
+          } else {
+            throw new Error("Password yang anda masukkan salah!");
           }
+        } else {
+          throw new Error("Email tidak terdaftar!");
         }
-
-        // Jika tidak valid atau user tidak ditemukan
-        return null;
       },
     }),
   ],
 
-callbacks: {
-    async jwt({ token, account, profile, user }: any) {
+  callbacks: {
+    async jwt({ token, account, user }: any) {
       if (account?.provider === "credentials" && user) {
         token.email = user.email;
         token.fullname = user.fullname;
-        token.role = user.role; // Tambahkan ini (line 46)
+        token.role = user.role;
       }
       return token;
     },
@@ -66,7 +65,7 @@ callbacks: {
         session.user.fullname = token.fullname;
       }
       if (token.role) {
-        session.user.role = token.role; // Tambahkan ini (line 58-60)
+        session.user.role = token.role;
       }
       return session;
     },
