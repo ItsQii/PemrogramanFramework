@@ -19,12 +19,18 @@ const TampilanRegister = () => {
       password: event.target.password.value,
     };
 
+    if (!data.email) {
+      setError("Email is required");
+      setIsLoading(false);
+      return;
+    }
+
     if (data.password.length < 6) {
     setError("Password must be at least 6 characters");
+    setIsLoading(false);
     return;
   }
 
-  setIsLoading(true);
 
     const response = await fetch("/api/auth/register", {
       method: "POST",

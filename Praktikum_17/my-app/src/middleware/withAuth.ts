@@ -25,13 +25,12 @@ export default function withAuth(
         if (pathname.startsWith("/profile")) {
           return NextResponse.redirect(new URL("/", req.url));
         }
-        // Selain profile, lempar ke login
+
         const Url = new URL("/auth/login", req.url);
         Url.searchParams.set("callbackUrl", encodeURI(req.url));
         return NextResponse.redirect(Url);
       }
 
-      // JIKA SUDAH LOGIN TAPI BUKAN ADMIN (Akses /admin)
       if (token.role !== "admin" && hanyaAdmin.includes(pathname)) {
         return NextResponse.redirect(new URL("/", req.url));
       }
