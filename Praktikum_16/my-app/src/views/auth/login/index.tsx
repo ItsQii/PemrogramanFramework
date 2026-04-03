@@ -42,6 +42,7 @@ const Tampilanlogin = () => {
   };
 
   return (
+    <>
     <div className={style.login}>
       <h1 className={style.login__title}>Halaman Login</h1>
       
@@ -89,6 +90,7 @@ const Tampilanlogin = () => {
         </p>
       </div>
     </div>
+    </>
   );
 };
 

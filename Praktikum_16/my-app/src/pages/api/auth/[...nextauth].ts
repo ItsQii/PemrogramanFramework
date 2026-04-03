@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { signIn } from "@/utils/db/servicefirebase"; // Import fungsi fetch user dari firebase
-import bcrypt from "bcrypt"; // Import untuk verifikasi password
+import { signIn } from "@/utils/db/servicefirebase";
+import bcrypt from "bcrypt";
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -49,13 +49,13 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
 
-  callbacks: {
+callbacks: {
     async jwt({ token, account, profile, user }: any) {
       if (account?.provider === "credentials" && user) {
         token.email = user.email;
         token.fullname = user.fullname;
+        token.role = user.role; // Tambahkan ini (line 46)
       }
-      // console.log("jwt callback", { token, account, profile, user })
       return token;
     },
     async session({ session, token }: any) {
@@ -65,7 +65,9 @@ export const authOptions: NextAuthOptions = {
       if (token.fullname) {
         session.user.fullname = token.fullname;
       }
-      // console.log("session callback", { session, token })
+      if (token.role) {
+        session.user.role = token.role; // Tambahkan ini (line 58-60)
+      }
       return session;
     },
   },
