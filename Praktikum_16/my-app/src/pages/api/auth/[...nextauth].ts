@@ -1,9 +1,9 @@
-import NextAuth, { NextAuthOptions } from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth, { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 
-export const authOptions:NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   session: {
-    strategy: "jwt"
+    strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
@@ -12,27 +12,27 @@ export const authOptions:NextAuthOptions = {
       credentials: {
         fullname: { label: "Full Name", type: "text" },
         email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const user : any = {
+        const user: any = {
           id: "1",
           email: credentials?.email,
           password: credentials?.password,
-          fullname: credentials?.fullname
-        }
-        
+          fullname: credentials?.fullname,
+        };
+
         if (user) {
           // console.log("user", user)
-          return user
+          return user;
         } else {
-          return null
+          return null;
         }
-      }
-    })
+      },
+    }),
   ],
-  
-callbacks: {
+
+  callbacks: {
     async jwt({ token, account, profile, user }: any) {
       if (account?.provider === "credentials" && user) {
         token.email = user.email;
@@ -51,6 +51,10 @@ callbacks: {
       // console.log("session callback", { session, token })
       return session;
     },
+  },
+
+  pages: {
+    signIn: "/auth/login",
   },
 };
 
