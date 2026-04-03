@@ -3,6 +3,7 @@ import style from "../../auth/login/login.module.scss";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
+import { authServices } from "@/services/auth";
 
 const Tampilanlogin = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,13 +18,15 @@ const Tampilanlogin = () => {
     setError("");
     setIsLoading(true);
 
+    // Ambil data dari form
+    const payload = {
+      email: event.target.email.value,
+      password: event.target.password.value,
+    };
+
     try {
-      const res = await signIn("credentials", {
-        redirect: false,
-        email: event.target.email.value,
-        password: event.target.password.value,
-        callbackUrl,
-      });
+      // Panggil login dari service
+      const res = await authServices.login(payload);
 
       if (!res?.error) {
         setIsLoading(false);
@@ -37,7 +40,6 @@ const Tampilanlogin = () => {
       setError("wrong email or password");
     }
   };
-
   return (
     <>
       <div className={style.login}>
@@ -83,8 +85,7 @@ const Tampilanlogin = () => {
             <br />
             <button
               type="button"
-              onClick={() => signIn("google", { callbackUrl, redirect: false })}
-              /* GANTI BARIS INI */
+              onClick={() => authServices.socialLogin("google", callbackUrl)}
               className={`${style.login__form__item__button} ${style.login__google}`}
               disabled={isLoading}
             >
@@ -125,7 +126,7 @@ const Tampilanlogin = () => {
 
             <button
               type="button"
-              onClick={() => signIn("github", { callbackUrl, redirect: false })}
+              onClick={() => authServices.socialLogin("github", callbackUrl)}
               className={`${style.login__form__item__button} ${style.login__github}`}
               disabled={isLoading}
             >
