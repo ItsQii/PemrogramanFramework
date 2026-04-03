@@ -1,6 +1,8 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { signIn } from "@/utils/db/servicefirebase";
+import GoogleProvider from "next-auth/providers/google";
+import GithubProvider from "next-auth/providers/github"; // Pastikan ini ada
+import { signIn, signInWithGoogle, signInWithGithub } from "@/utils/db/servicefirebase";
 import bcrypt from "bcrypt";
 
 export const authOptions: NextAuthOptions = {
@@ -9,6 +11,14 @@ export const authOptions: NextAuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+    }),
+    GithubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID || "",
+      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
+    }),
     CredentialsProvider({
       name: "credentials",
       credentials: {
@@ -16,19 +26,16 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // 1. Validasi input kosong
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Email dan Password wajib diisi!");
         }
 
-        // 2. Cari user di database berdasarkan email
         const user: any = await signIn(credentials.email);
 
         if (user) {
-          // 3. Cek apakah password cocok
           const isPasswordValid = await bcrypt.compare(
             credentials.password,
-            user.password
+            user.password,
           );
 
           if (isPasswordValid) {
@@ -50,13 +57,55 @@ export const authOptions: NextAuthOptions = {
 
   callbacks: {
     async jwt({ token, account, user }: any) {
+      // Logika bawaan Credentials
       if (account?.provider === "credentials" && user) {
         token.email = user.email;
         token.fullname = user.fullname;
         token.role = user.role;
       }
+
+      // Jika login dengan Google, tambahkan informasi yang diperlukan ke token
+      if (account?.provider === "google") {
+        const data = {
+          fullname: user.name,
+          email: user.email,
+          image: user.image,
+          type: account.provider,
+        };
+
+        await signInWithGoogle(data, (result: any) => {
+          if (result.status) {
+            token.fullname = result.data.fullname;
+            token.email = result.data.email;
+            token.image = result.data.image;
+            token.type = result.data.type;
+            token.role = result.data.role;
+          }
+        });
+      }
+
+      if (account?.provider === "github") {
+        const data = {
+          fullname: user.name,
+          email: user.email,
+          image: user.image,
+          type: account.provider,
+        };
+
+        await signInWithGithub(data, (result: any) => {
+          if (result.status) {
+            token.fullname = result.data.fullname;
+            token.email = result.data.email;
+            token.image = result.data.image;
+            token.type = result.data.type;
+            token.role = result.data.role;
+          }
+        });
+      }
+
       return token;
     },
+
     async session({ session, token }: any) {
       if (token.email) {
         session.user.email = token.email;
@@ -64,9 +113,19 @@ export const authOptions: NextAuthOptions = {
       if (token.fullname) {
         session.user.fullname = token.fullname;
       }
+
+      if (token.image) {
+        session.user.image = token.image;
+      }
+
       if (token.role) {
         session.user.role = token.role;
       }
+
+      if (token.type) {
+        session.user.type = token.type;
+      }
+
       return session;
     },
   },

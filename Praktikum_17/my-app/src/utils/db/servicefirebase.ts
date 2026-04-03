@@ -7,6 +7,7 @@ import {
   query,
   where,
   addDoc,
+  updateDoc,
 } from "firebase/firestore";
 import app from "./firebase";
 import bcrypt from "bcrypt";
@@ -58,7 +59,6 @@ export async function signUp(userData: any, callback: Function) {
   }));
 
   if (data.length > 0) {
-    // Kirim object error jika email sudah ada
     callback({
       status: false,
       message: "Email already exists",
@@ -69,18 +69,97 @@ export async function signUp(userData: any, callback: Function) {
     
     await addDoc(collection(db, "users"), userData)
       .then(() => {
-        // Kirim object success
         callback({
           status: true,
           message: "User registered successfully",
         });
       })
       .catch((error: any) => {
-        // Kirim object error jika database bermasalah
         callback({
           status: false,
           message: error.message,
         });
       });
+  }
+}
+
+export async function signInWithGoogle(userData: any, callback: any) {
+  try {
+    const q = query(
+      collection(db, "users"),
+      where("email", "==", userData.email),
+    );
+
+    const querySnapshot = await getDocs(q);
+    const data: any = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    if (data.length > 0) {
+      // User sudah ada, update data
+      userData.role = data.role;
+      await updateDoc(doc(db, "users", data.id), userData);
+      callback({
+        status: true,
+        message: "User registered and logged in with Google",
+        data: userData,
+      });
+    } else {
+      // User baru, tambah data
+      userData.role = "member";
+      await addDoc(collection(db, "users"), userData);
+      callback({
+        status: true,
+        message: "User registered and logged in with Google",
+        data: userData,
+      });
+    }
+  } catch (error: any) {
+    // Tangani error di sini
+    callback({
+      status: false,
+      message: "Failed to register user with Google",
+    });
+  }
+}
+
+export async function signInWithGithub(userData: any, callback: any) {
+  try {
+    const q = query(
+      collection(db, "users"),
+      where("email", "==", userData.email),
+    );
+
+    const querySnapshot = await getDocs(q);
+    const data: any = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    if (data.length > 0) {
+      // User sudah ada, update data
+      userData.role = data.role;
+      await updateDoc(doc(db, "users", data.id), userData);
+      callback({
+        status: true,
+        message: "User logged in with Github",
+        data: userData,
+      });
+    } else {
+      // User baru, tambah data
+      userData.role = "member";
+      await addDoc(collection(db, "users"), userData);
+      callback({
+        status: true,
+        message: "User registered and logged in with Github",
+        data: userData,
+      });
+    }
+  } catch (error: any) {
+    callback({
+      status: false,
+      message: "Failed to register user with Github",
+    });
   }
 }

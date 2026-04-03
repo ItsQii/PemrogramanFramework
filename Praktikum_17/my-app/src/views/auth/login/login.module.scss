@@ -15,8 +15,8 @@
     color: #ffffff;
     margin-bottom: 40px;
   }
-  
- &__error {
+
+  &__error {
     background-color: #fee2e2;
     color: #dc2626;
     border: 1px solid #fecaca;
@@ -28,7 +28,7 @@
     margin-bottom: 20px;
     animation: fadeIn 0.3s ease-in-out;
   }
-  
+
   &__form {
     background: #ffffff;
     width: 100%;
@@ -80,8 +80,59 @@
         transform: translateY(-2px);
       }
     }
-  }
 
+    .login__github {
+      background-color: #24292e !important;
+      margin-top: 18px;
+      border: 1px solid #444d56;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #444d56 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      &__content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+      }
+
+      svg {
+        flex-shrink: 0;
+      }
+    }
+
+    .login__google__content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    button.login__google {
+      background-color: #ffffff;
+      color: #000000;
+      border: 2px solid #bbb;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #f7f7f7;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-color: #999;
+      }
+
+      svg {
+        flex-shrink: 0;
+      }
+    }
+  }
 }
 
 /* Animation */
