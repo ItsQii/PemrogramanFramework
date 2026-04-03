@@ -46,4 +46,36 @@ Email sudah ada
 methode GET
 ![](https://github.com/user-attachments/assets/f08f6777-a03f-438f-a8f0-bf486daec726)
 
+## Tugas Praktikum
 
+1. Implementasikan register terhubung ke database
+   
+   ![](https://github.com/user-attachments/assets/6ecc0e82-041e-41c8-988a-cf48d7e76320)
+
+3. tambahkan validasi
+   email wajib
+   password minimal 6 karakter
+
+   ![](https://github.com/user-attachments/assets/57addd36-31ce-4521-a237-61645d8afff1)
+
+   ![](https://github.com/user-attachments/assets/65e41b90-c6fc-4dda-92b6-c16a571c10a2)
+
+4. tambahkan role default member
+   
+   ![](https://github.com/user-attachments/assets/01e8610e-0908-480c-8ff7-5733987ec54d)
+
+5. tampilkan pesan error di UI
+   
+   ![](https://github.com/user-attachments/assets/8d976da1-06f4-4df8-8678-50f360fa98f4)
+
+## Pertanyaan analisis
+1. Mengapa password harus di-hash?
+   Jawab: agar terhindar dari kebocoran data
+2. Apa perbedaan addDoc dan setDoc?
+   Jawab: addDoc digunakan untuk data yang tidak mementingkan urutan sedangkan setDoc digunakan untuk data yang bersifat unik seperti userId
+3. Mengapa perlu validasi method POST?
+   Jawab: untuk mencegah aksesnya salah alamat seperti dibuka oleh orang melalui browser (GET)
+4. Apa risiko jika email tidak dicek unik?
+   Jawab: email akan terdaftar berkali kali dan berakibat crash karena akun login bersamaan tapi password beda dan data yg disimpan akan konflik karena tercampur dengan email yg lain
+5. Apa fungsi role pada user?
+   Jawab: untuk menentukan hak ases mereka diizinkan mengakses halaman yg mana saja
