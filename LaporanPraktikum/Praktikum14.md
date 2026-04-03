@@ -69,6 +69,26 @@ Uji 2 - Sudah Login
 Uji 3 - Logout
 <video src="https://github.com/user-attachments/assets/5ac354c0-3320-474b-8f4c-550104a63a71" width="100%" autoplay muted loop></video>
 
+## Tugas Praktikum
+1. Implementasikan login menggunakan Credentials Provider
+
+   ![](https://github.com/user-attachments/assets/55c1c530-6d14-49fb-812f-b9b439159565)
+   
+2. Tambahkan field full name
+
+   ![](https://github.com/user-attachments/assets/a2ec1ee1-76a4-45ef-8458-f763e2079e15)
+
+3. Tampilkan full name setelah login
+
+   ![](https://github.com/user-attachments/assets/a449c930-2651-4f56-bdf0-fe864c433df4)
+
+4. Buat halaman profile
+
+   ![](https://github.com/user-attachments/assets/f22d706f-b54c-4748-8ff5-b414ae51f9f4)
+
+5. Lindungi halaman profile dengan middleware
+
+   ![](https://github.com/user-attachments/assets/8fb0566f-36a6-4065-a9c9-c05ca3a162d4)
 
 ## Pertanyaan Analisis
 1. Mengapa session menggunakan JWT?
