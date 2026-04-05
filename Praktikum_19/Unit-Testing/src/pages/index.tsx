@@ -1,17 +1,27 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import Navbar from "@/components/layouts/navbar";
+import styles from "@/styles/Home.module.scss";
 
 export default function Home() {
   return (
-      <div>
-        <head>
-          <title>Praktikum Next.js Pages Router</title>
-        </head>
-        <h1 className="text-3xl font-bold">Praktikum Next.js Pages Router</h1>
+    <main className={styles.main}>
+      <Head>
+        <title>Praktikum Next.js Pages Router</title>
+      </Head>
+
+      <section className={styles.center}>
+        <div className={styles.badge}>
+          <span>New</span> Configure Budget for Each Project →
+        </div>
+
+        <h1>Praktikum Next.js Pages Router</h1>
         <p>Mahasiswa D4 Pengembangan Web</p>
-      </div>
-  )
+
+        <div className={styles.buttonGroup}>
+          <button className={styles.btnAbout}>About</button>
+          <button className={styles.btnBlog}>Blog</button>
+        </div>
+      </section>
+
+    </main>
+  );
 }
