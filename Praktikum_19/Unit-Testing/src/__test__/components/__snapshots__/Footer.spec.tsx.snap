@@ -1,23 +1,26 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`Footer Component renders footer correctly 1`] = `
+exports[`Footer Component renders footer correctly and meets all requirements 1`] = `
 <div>
-  <div
-    class="navbar"
+  <footer
+    class="footer"
   >
     <div
-      class="navbar__brand"
-      id="title"
-    />
-    <div
-      class="navbar__right"
+      class="footer__content"
     >
-      <button
-        class="navbar__button navbar__button--primary"
+      <h3
+        class="footer__title"
+        data-testid="footer-title"
       >
-        Sign In
-      </button>
+        Framework Based Programming
+      </h3>
+      <div
+        class="footer__divider"
+      />
+      <h3>
+        With Great Power Comes Great Responsibility.
+      </h3>
     </div>
-  </div>
+  </footer>
 </div>
 `;

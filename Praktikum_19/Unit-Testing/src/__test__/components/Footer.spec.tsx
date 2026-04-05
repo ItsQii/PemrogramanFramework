@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react"
-import Footer from "@/components/layouts/navbar"
+import Footer from "@/components/layouts/Footer"
+import "@testing-library/jest-dom"
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(() => ({
@@ -9,11 +10,15 @@ jest.mock("next-auth/react", () => ({
 }))
 
 describe("Footer Component", () => {
-  it("renders footer correctly", () => {
+  it("renders footer correctly and meets all requirements", () => {
     const { container } = render(<Footer />)
     
-    //expect(screen.getByText("© 2026 Praktikum Framework")).toBeInTheDocument()
-    
     expect(container).toMatchSnapshot()
+
+    const titleElement = screen.getByTestId("footer-title")
+    
+    expect(titleElement.textContent).toBe("Framework Based Programming")
+
+    expect(screen.getByText(/With Great Power/i)).toBeInTheDocument()
   })
 })
