@@ -6,16 +6,20 @@ exports[`About Page renders about page correctly 1`] = `
   "baseElement": <body>
     <div>
       <div>
-        <h1>
-          ini halaman about
+        <h1
+          data-testid="title"
+        >
+          About Page
         </h1>
       </div>
     </div>
   </body>,
   "container": <div>
     <div>
-      <h1>
-        ini halaman about
+      <h1
+        data-testid="title"
+      >
+        About Page
       </h1>
     </div>
   </div>,
