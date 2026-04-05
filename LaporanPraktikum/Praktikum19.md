@@ -131,9 +131,38 @@ Note pastikan : comment pada code berikut pada 2 code testing
 
 ![](https://github.com/user-attachments/assets/f835d3f2-0021-4e46-8fdf-905f010245e5)
 
+## Tugas Praktikum
 
+1. Buat unit test untuk:
+   
+Halaman Product
 
+![](https://github.com/user-attachments/assets/4b3a2d5c-a856-4032-8796-0161e108c513)
 
+1 Komponen
 
+![](https://github.com/user-attachments/assets/613f5f91-2b2c-43d4-ab81-d7a8dad4c9f6)
+
+2. Gunakan minimal:
+
+1 Snapshot test
+1 toBe()
+1 getByTestId()
+
+![](https://github.com/user-attachments/assets/1f510740-1496-43ee-8aa6-bc33cb2ebe2b)
+
+3. Buat coverage minimal 50%
+
+![](https://github.com/user-attachments/assets/5d2e1a24-a585-44e7-8189-9c60606c7f69)
+
+4. Lakukan mocking untuk router
+
+![](https://github.com/user-attachments/assets/07486fcc-6b25-44be-8d79-cf1f8954ac81)
+
+5. Dokumentasi hasil coverage
+
+![](https://github.com/user-attachments/assets/b6ccfceb-0b80-4f5d-a637-98c06e86940a)
+
+![](https://github.com/user-attachments/assets/076fffef-05c6-4e01-9ad0-a8341ff8ecdd)
 
 
