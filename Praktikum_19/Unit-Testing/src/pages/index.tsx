@@ -9,9 +9,6 @@ export default function Home() {
       </Head>
 
       <section className={styles.center}>
-        <div className={styles.badge}>
-          <span>New</span> Configure Budget for Each Project →
-        </div>
 
         <h1>Praktikum Next.js Pages Router</h1>
         <p>Mahasiswa D4 Pengembangan Web</p>

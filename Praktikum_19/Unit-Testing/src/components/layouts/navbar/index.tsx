@@ -3,13 +3,20 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image"; 
 import Script from 'next/dist/client/script';
 
-const Navbar = () => {
+type NavbarProps = {
+  active?: boolean;
+  setShowNav?: (val: boolean) => void;
+};
+
+const Navbar = ({ active, setShowNav }: NavbarProps) => {
   const { data }: any = useSession();
 
   return (
-    <div className={styles.navbar}>
-      {/* <div className={styles.navbar__brand}>MyApp</div> */}
-
+    <div
+      className={`${styles.navbar} ${active ? styles.active : ""}`}
+      onMouseEnter={() => setShowNav?.(true)}
+      onMouseLeave={() => setShowNav?.(false)}
+    >
       <div className={styles.navbar__brand} id="title"></div>
 
       <Script id="title-script" strategy='lazyOnload'>

@@ -1,5 +1,3 @@
-/* Home.module.scss - Full Version */
-
 .main {
   display: flex;
   flex-direction: column;
@@ -7,8 +5,7 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
-  /* Tambahan: Tema Gelap Zeabur */
-  background: radial-gradient(circle at center, #1a0b2e 0%, #050505 100%);
+  background: radial-gradient(circle at top, #1e3a8a 0%, #0f172a 40%, #020617 100%);
   color: white;
 }
 
@@ -35,10 +32,10 @@
 .code {
   font-weight: 700;
   font-family: var(--font-mono);
-  color: #a855f7;
+  color: #3b82f6;
 }
 
-/* Bagian Tengah (Headline & Buttons) */
+/* CENTER */
 .center {
   display: flex;
   flex-direction: column;
@@ -53,7 +50,7 @@
     font-weight: 800;
     margin-bottom: 0.5rem;
     letter-spacing: -2px;
-    background: linear-gradient(to bottom, #fff 30%, #888 100%);
+    background: linear-gradient(to bottom, #ffffff 20%, #93c5fd 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -64,23 +61,22 @@
     margin-bottom: 2rem;
   }
 
-  /* Glow Ungu Raksasa */
   &::before {
     content: '';
-    left: 50%;
     position: absolute;
-    filter: blur(120px);
+    left: 50%;
     transform: translateX(-50%);
-    background: #6d28d9;
+    filter: blur(120px);
+    background: #3b82f6;
     border-radius: 50%;
     width: 480px;
     height: 360px;
-    opacity: 0.3;
+    opacity: 0.25;
     z-index: -1;
   }
 }
 
-/* Tombol Request: About (Putih) & Blog (Ungu) */
+/* BUTTON */
 .buttonGroup {
   display: flex;
   gap: 1rem;
@@ -89,18 +85,22 @@
 
   .btnAbout {
     background: white;
-    color: black;
+    color: #0f172a;
     padding: 0.8rem 2.5rem;
     border-radius: 50px;
     font-weight: 700;
     cursor: pointer;
     transition: 0.3s;
     border: none;
-    &:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+
+    &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(59,130,246,0.4);
+  }
   }
 
   .btnBlog {
-    background: #6d28d9;
+    background: #3b82f6;
     color: white;
     padding: 0.8rem 2.5rem;
     border-radius: 50px;
@@ -108,10 +108,16 @@
     cursor: pointer;
     transition: 0.3s;
     border: none;
-    &:hover { background: #5b21b6; transform: scale(1.05); }
+
+    &:hover {
+      background: #2563eb;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(59,130,246,0.5);
+    }
   }
 }
 
+/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -149,11 +155,14 @@
   &:hover {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    span { transform: translateX(4px); }
+
+    span {
+      transform: translateX(4px);
+    }
   }
 }
 
-/* Mobile & Tablet Logic (Dari file asli kamu) */
+/* RESPONSIVE */
 @media (max-width: 700px) {
   .main { padding: 4rem; }
   .grid { grid-template-columns: 1fr; text-align: center; }
@@ -165,7 +174,7 @@
   .grid { grid-template-columns: repeat(2, 50%); }
 }
 
-/* Animasi */
+/* ANIMATION */
 @keyframes rotate {
   from { transform: rotate(360deg); }
   to { transform: rotate(0deg); }

@@ -43,4 +43,16 @@ a {
   justify-content: center;
 }
 
+.top-trigger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 998;
+}
 
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
