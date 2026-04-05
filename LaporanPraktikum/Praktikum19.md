@@ -165,4 +165,23 @@ Halaman Product
 
 ![](https://github.com/user-attachments/assets/076fffef-05c6-4e01-9ad0-a8341ff8ecdd)
 
+## Diskusi & Refleksi
+1. Mengapa unit testing penting sebelum production?
 
+   Jawab: untuk mendeteksi eror ataupun bug sebelum di produksi dan juga untuk memastikan keamanan kode
+   
+2. Mengapa branch coverage sulit mencapai 100%?
+
+   Jawab: karena beberapa kode memiliki logika bercabang ataupun double dan juga Kadang ada kondisi yang sangat jarang terjadi
+   (seperti error 500 dari server) yang sering kelewat untuk dibuatkan skenario tesnya
+3. Apa itu mocking?
+
+   Jawab: memalsukan objek atau fungsi luar yang dibutuhkan komponen, jadi sepertimocking UseRouter jadi kita tidak butuh kooneksi internet asli agar bisa berjalan
+   
+4. Kapan snapshot test digunakan?
+
+   Jawab: saat ingin tes kalo UI nya tidak berubah tiba tiba atau tidak sengaja
+
+5. Apakah semua file harus dites?
+
+   Jawab: menurut saya file yang di tes hanya file yang penting seperti login dan register
