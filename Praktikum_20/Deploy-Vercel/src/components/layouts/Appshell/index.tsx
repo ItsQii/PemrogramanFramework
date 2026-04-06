@@ -3,6 +3,7 @@ import Navbar from "../navbar";
 import Footer from "@/components/layouts/Footer";
 import { Roboto } from "next/font/google";
 import { useState, useRef } from "react";
+
 const disableNavbar = ["/auth/login", "/auth/register", "/404", "/dashboard"];
 
 type AppShellProps = {
@@ -19,7 +20,6 @@ const AppShell = (props: AppShellProps) => {
   const { pathname } = useRouter();
 
   const [showNav, setShowNav] = useState(false);
-
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleMouseEnter = () => {
@@ -40,6 +40,7 @@ const AppShell = (props: AppShellProps) => {
       className={roboto.className}
       style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
     >
+      {/* 🔥 FIX: top-trigger tetap ada tapi tidak ganggu klik */}
       {!disableNavbar.includes(pathname) && (
         <div
           className="top-trigger"
@@ -51,11 +52,12 @@ const AppShell = (props: AppShellProps) => {
             left: 0,
             width: "100%",
             height: "40px",
-            zIndex: 1000,
+            zIndex: 998, // 🔥 lebih rendah dari navbar (999)
           }}
         />
       )}
 
+      {/* Navbar */}
       {!disableNavbar.includes(pathname) && (
         <div
           onMouseEnter={() => {
@@ -63,11 +65,13 @@ const AppShell = (props: AppShellProps) => {
             setShowNav(true);
           }}
           onMouseLeave={handleMouseLeave}
+          style={{ position: "relative", zIndex: 999 }} // 🔥 pastikan di atas trigger
         >
           <Navbar active={showNav} setShowNav={setShowNav} />
         </div>
       )}
 
+      {/* Content */}
       <div
         style={{
           flex: 1,
@@ -78,6 +82,7 @@ const AppShell = (props: AppShellProps) => {
         {children}
       </div>
 
+      {/* Footer */}
       {!disableNavbar.includes(pathname) && <Footer />}
     </main>
   );
