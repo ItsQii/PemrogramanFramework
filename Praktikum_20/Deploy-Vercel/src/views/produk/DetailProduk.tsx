@@ -45,12 +45,12 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
 
 // --- SERVER SIDE RENDERING (SSR) ---
 export async function getServerSideProps({ params }: { params: { id: string } }) {
-  const res = await fetch(`http://localhost:3000/api/produk/${params.id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/produk/${params.id}`);
   const response = await res.json();
 
   return {
     props: {
-      product: response.data,
+      product: response.data || null,
     },
   };
 }
