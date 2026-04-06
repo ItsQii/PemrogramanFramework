@@ -12,11 +12,7 @@ const Navbar = ({ active, setShowNav }: NavbarProps) => {
   const { data }: any = useSession();
 
   return (
-    <div
-      className={`${styles.navbar} ${active ? styles.active : ""}`}
-      onMouseEnter={() => setShowNav?.(true)}
-      onMouseLeave={() => setShowNav?.(false)}
-    >
+    <div className={`${styles.navbar} ${active ? styles.active : ""}`}>
       <div className={styles.navbar__brand} id="title"></div>
 
       <Script id="title-script" strategy='lazyOnload'>
