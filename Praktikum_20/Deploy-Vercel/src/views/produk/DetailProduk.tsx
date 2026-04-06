@@ -44,13 +44,28 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
 */
 
 // --- SERVER SIDE RENDERING (SSR) ---
-export async function getServerSideProps({ params }: { params: { id: string } }) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/produk/${params.id}`);
-  const response = await res.json();
+export async function getServerSideProps(context: any) {
+  try {
+    const { params, req } = context;
 
-  return {
-    props: {
-      product: response.data || null,
-    },
-  };
+    const host = req.headers.host;
+    const protocol = host.includes("localhost") ? "http" : "https";
+
+    const res = await fetch(`${protocol}://${host}/api/produk/${params.id}`);
+    const response = await res.json();
+
+    return {
+      props: {
+        product: response.data || null,
+      },
+    };
+  } catch (error) {
+    console.error("ERROR SSR:", error);
+
+    return {
+      props: {
+        product: null,
+      },
+    };
+  }
 }
