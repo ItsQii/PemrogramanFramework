@@ -17,9 +17,8 @@ export default async function handler(
   try {
     const { produk } = req.query;
 
-    // 👉 Ambil detail produk (by ID)
     if (Array.isArray(produk) && produk.length > 0) {
-      const id = produk[0]; // ✅ FIX DI SINI
+      const id = produk[0];
 
       const data = await retrieveDataById("products", id);
 
@@ -38,7 +37,6 @@ export default async function handler(
       });
     }
 
-    // 👉 Ambil semua produk
     const data = await retrieveProducts("products");
 
     return res.status(200).json({

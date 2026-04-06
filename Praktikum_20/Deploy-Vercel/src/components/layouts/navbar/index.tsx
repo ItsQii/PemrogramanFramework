@@ -1,7 +1,7 @@
 import styles from "./navbar.module.scss";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image"; 
-import Script from 'next/dist/client/script';
+import Link from 'next/link';
 
 type NavbarProps = {
   active?: boolean;
@@ -13,11 +13,11 @@ const Navbar = ({ active, setShowNav }: NavbarProps) => {
 
   return (
     <div className={`${styles.navbar} ${active ? styles.active : ""}`}>
-      <div className={styles.navbar__brand} id="title"></div>
-
-      <Script id="title-script" strategy='lazyOnload'>
-        {`document.getElementById('title').innerHTML = 'MyApp';`}
-      </Script>
+      <div className={styles.navbar__brand}>
+        <Link href="/" className={styles.navbar__brand__link}>
+          Home
+        </Link>
+      </div>
 
       <div className={styles.navbar__right}>
         {data ? (

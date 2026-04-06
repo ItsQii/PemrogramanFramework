@@ -23,7 +23,7 @@ export default function withAuth(
 
       if (!token) {
         if (pathname.startsWith("/profile")) {
-          return NextResponse.redirect(new URL("/", req.url));
+          return NextResponse.redirect(new URL("/auth/login", req.url));
         }
 
         const Url = new URL("/auth/login", req.url);
