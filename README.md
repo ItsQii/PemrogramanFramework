@@ -1,7 +1,7 @@
 # 🚀 Pemrograman Berbasis Framework
 
 <p align="left">
-  <img src="https://img.shields.io/badge/Progress-19%20of%2020-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Progress-19%20of%2019-blue?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Class-TI--3D-orange?style=for-the-badge" />
 </p>
 
