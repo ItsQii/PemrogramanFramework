@@ -11,12 +11,28 @@ const ProdukDetailPage = ({ product }: { product: any }) => {
 export default ProdukDetailPage;
 
 export async function getServerSideProps({ params }: { params: { id: string } }) {
-  const res = await fetch(`http://127.0.0.1:3000/api/produk/${params.id}`);
-  const response = await res.json();
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
-  return {
-    props: {
-      product: response.data || null,
-    },
-  };
+  try {
+    const res = await fetch(`${baseUrl}/api/produk/${params.id}`);
+    
+    if (!res.ok) {
+      throw new Error("Gagal mengambil data dari API");
+    }
+
+    const response = await res.json();
+
+    return {
+      props: {
+        product: response.data || null,
+      },
+    };
+  } catch (error) {
+    console.error("Error di getServerSideProps:", error);
+    return {
+      props: {
+        product: null,
+      },
+    };
+  }
 }
