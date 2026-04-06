@@ -94,4 +94,29 @@ Sudah di lakukan di praktikum sebelumnya
 
 ![](https://github.com/user-attachments/assets/912ca30a-b208-4735-9c88-45f2f2845357)
 
+## LINK HASIL DEPLOYMENT
 
+https://pemrograman-framework-chi.vercel.app
+
+## Refleksi & Diskusi
+1. Mengapa localhost tidak boleh digunakan di production?
+
+Jawab: karena jika memakai localhost maka web nya hanya bisa diakses oleh laptopmu sendiri, dan saat di production, vercel akan menganggap localhost itu server internal mereka jadi web nya akan error
+
+2. Mengapa SSG bisa gagal saat build?
+
+Jawab: karena SG mengharuskan semua komponen pendukung (data, koneksi, kredensial, dan logika kode) berada dalam kondisi sempurna pada saat melakukan compile
+
+3. Apa perbedaan SSR dan SSG saat deployment?
+
+Jawab: SSG memindahkan seluruh beban server ke tahap Build Tim agar nanti akses user nya instan, sedangkan SSR memindaah beban server ke tahap runtime
+agar data yang muncul selalu sinkron dengan database
+   
+4. Mengapa perlu redeploy setelah menambahkan environment?
+
+Jawab: karena setelah deploy, env nya sudah bersifat permanen g selalu update sesuai perubahan, jadi jika kita mengubah env kita harus redeploy lagi agar env nya berubah
+
+5. Apa fungsi redirect URI pada OAuth?
+
+Jawab: sebagai validasi keamanan dari penyedia Oauth seperti google dan github, dan keduanya hanya akan mengirimkan data autentikasi ke alamat yang sudah terdaftar secara resmi di dashboard developer
+yang kita isi url web kita di praktikum sebelumnya, ini berfungsi unuk mencegah peretas mengalihkan data user ke website lain
