@@ -1,34 +1,68 @@
 .register {
   min-height: 100vh;
   display: flex;
-  flex-direction: column; /* <- penting */
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  background: #f5f7fb;
   padding: 20px;
 
+  &__container {
+    display: flex;
+    width: 900px;
+    max-width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  /* KIRI */
+  &__left {
+    flex: 1;
+
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(
+        135deg,
+        #4f46e5 0%,
+        #6366f1 40%,
+        #3b82f6 70%,
+        #06b6d4 100%
+      );
+
+    background-size: 30px 30px, 30px 30px, 100% 100%;
+    position: relative;
+  }
+
+  /* KANAN */
+  &__right {
+    flex: 1;
+    background: #ffffff;
+    padding: 40px;
+  }
+
   &__title {
-    width: 100%;
     text-align: center;
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    color: #333;
   }
   
   &__error {
-    color: red;
-    font-family: 14px;
-    margin-top: 1px;
+    background-color: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
   }
   
   &__form {
-    background: #ffffff;
-    width: 100%;
-    max-width: 420px;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: none;
+    padding: 0;
 
     &__item {
       display: flex;
@@ -47,12 +81,27 @@
         border-radius: 10px;
         border: 1px solid #ddd;
         font-size: 14px;
-        transition: all 0.3s ease;
 
         &:focus {
           outline: none;
           border-color: #2a5298;
           box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.2);
+        }
+      }
+    }
+
+    &__item__text {
+      text-align: center;
+      font-size: 14px;
+
+      a {
+        color: #2a5298;
+        font-weight: 600;
+        text-decoration: none;
+
+        &:hover {
+          color: #1e3c72;
+          text-decoration: underline;
         }
       }
     }
@@ -74,30 +123,21 @@
       }
     }
   }
-
-}
-
-/* Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .register {
-    &__form {
-      padding: 30px 20px;
+    &__container {
+      flex-direction: column;
     }
 
-    &__title {
-      font-size: 26px;
+    &__left {
+      display: none;
+    }
+
+    &__right {
+      padding: 30px 20px;
     }
   }
 }

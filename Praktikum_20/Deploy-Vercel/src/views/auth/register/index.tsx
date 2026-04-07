@@ -5,7 +5,7 @@ import style from "../../auth/register/register.module.scss";
 
 const TampilanRegister = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(""); // <-- TAMBAHAN: State untuk menampung pesan error
+  const [error, setError] = useState("");
   const { push } = useRouter();
 
   const handleSubmit = async (event: any) => {
@@ -54,71 +54,72 @@ const TampilanRegister = () => {
   };
 
   return (
-    <div className={style.register}>
-      <h1 className={style.register__title}>Halaman Register</h1>
-      {error && <p className={style.register__error}>{error}</p>}
-      
-      <div className={style.register__form}>
-        <form onSubmit={handleSubmit}>
-          <div className={style.register__form__item}>
-            <label
-              htmlFor="email"
-              className={style.register__form__item__label}
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
-              className={style.register__form__item__input}
-            />
-          </div>
+  <div className={style.register}>
+    <div className={style.register__container}>
 
-          <div className={style.register__form__item}>
-            <label
-              htmlFor="fullname"
-              className={style.register__form__item__label}
-            >
-              Fullname
-            </label>
-            <input
-              type="text"
-              id="fullname"
-              name="fullname"
-              placeholder="Fullname"
-              className={style.register__form__item__input}
-            />
-          </div>
+      {/* KIRI */}
+      <div className={style.register__left}></div>
 
-          <div className={style.register__form__item}>
-            <label
-              htmlFor="password"
-              className={style.register__form__item__label}
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
-              className={style.register__form__item__input}
-            />
-          </div>
+      {/* KANAN */}
+      <div className={style.register__right}>
+        <h1 className={style.register__title}>REGISTER PAGE</h1>
 
-          <button type="submit" className={style.register__form__item__button}>
-            {isLoading ? "Loading..." : "Register"}
-          </button>
-        </form>
-        <br />
-        <p className={style.register__form__item__text}>
-          Sudah punya akun? <Link href="/auth/login">Ke Halaman Login</Link>
-        </p>
+        <div className={style.register__form}>
+          {error && <p className={style.register__error}>{error}</p>}
+
+          <form onSubmit={handleSubmit}>
+            <div className={style.register__form__item}>
+              <label className={style.register__form__item__label}>
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                className={style.register__form__item__input}
+              />
+            </div>
+
+            <div className={style.register__form__item}>
+              <label className={style.register__form__item__label}>
+                Fullname
+              </label>
+              <input
+                type="text"
+                name="fullname"
+                placeholder="Fullname"
+                className={style.register__form__item__input}
+              />
+            </div>
+
+            <div className={style.register__form__item}>
+              <label className={style.register__form__item__label}>
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                className={style.register__form__item__input}
+              />
+            </div>
+
+            <button className={style.register__form__item__button}>
+              {isLoading ? "Loading..." : "Register"}
+            </button>
+          </form>
+
+          <br />
+
+          <p className={style.register__form__item__text}>
+            Sudah punya akun?{" "}
+            <Link href="/auth/login">Login</Link>
+          </p>
+        </div>
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default TampilanRegister;

@@ -1,19 +1,81 @@
 .login {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  background: #f5f7fb;
   padding: 20px;
 
+  &__container {
+    display: flex;
+    width: 900px;
+    max-width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  /* KIRI */
+  &__left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 40px;
+
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(
+      135deg,
+      #4f46e5 0%,
+      #6366f1 40%,
+      #3b82f6 70%,
+      #06b6d4 100%
+    );
+
+  background-size: 30px 30px, 30px 30px, 100% 100%;
+
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.15);
+    filter: blur(80px);
+    top: -50px;
+    left: -50px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: rgba(255, 255, 255, 0.1);
+    filter: blur(80px);
+    bottom: -50px;
+    right: -50px;
+  }
+}
+
+  /* KANAN */
+  &__right {
+    flex: 1;
+    background: #ffffff;
+    padding: 40px;
+  }
+
   &__title {
-    width: 100%;
     text-align: center;
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    color: #333;
   }
 
   &__error {
@@ -23,46 +85,58 @@
     padding: 12px;
     border-radius: 10px;
     font-size: 14px;
-    font-weight: 500;
     text-align: center;
     margin-bottom: 20px;
-    animation: fadeIn 0.3s ease-in-out;
   }
 
-  &__form {
-    background: #ffffff;
-    width: 100%;
-    max-width: 420px;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+ &__form {
+  box-shadow: none;
+  padding: 0;
 
-    &__item {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 20px;
+  &__item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 
-      &__label {
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 8px;
-        color: #333;
-      }
+    &__label {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+    }
 
-      &__input {
-        padding: 12px 14px;
-        border-radius: 10px;
-        border: 1px solid #ddd;
-        font-size: 14px;
-        transition: all 0.3s ease;
+    &__input {
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-size: 14px;
 
-        &:focus {
-          outline: none;
-          border-color: #2a5298;
-          box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.2);
-        }
+      &:focus {
+        outline: none;
+        border-color: #2a5298;
+        box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.2);
       }
     }
+  }
+
+  /* TAMBAHAN DI SINI */
+  &__item__text {
+    font-size: 14px;
+    text-align: center;
+
+    a {
+      color: #2a5298;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+
+      &:hover {
+        color: #1e3c72;
+        text-decoration: underline;
+      }
+    }
+  }
+
 
     button {
       width: 100%;
@@ -85,12 +159,10 @@
       background-color: #24292e !important;
       margin-top: 18px;
       border: 1px solid #444d56;
-      transition: all 0.3s ease;
 
       &:hover {
         background-color: #444d56 !important;
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       }
 
       &__content {
@@ -98,11 +170,19 @@
         align-items: center;
         justify-content: center;
         gap: 12px;
-        width: 100%;
       }
+    }
 
-      svg {
-        flex-shrink: 0;
+    button.login__google {
+      background-color: #ffffff;
+      color: #000000;
+      border: 2px solid #bbb;
+      margin-top: 10px;
+
+      &:hover {
+        background-color: #f7f7f7;
+        transform: translateY(-2px);
+        border-color: #999;
       }
     }
 
@@ -111,51 +191,23 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
-      width: 100%;
     }
-
-    button.login__google {
-      background-color: #ffffff;
-      color: #000000;
-      border: 2px solid #bbb;
-      margin-top: 10px;
-      transition: all 0.3s ease;
-
-      &:hover {
-        background-color: #f7f7f7;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        border-color: #999;
-      }
-
-      svg {
-        flex-shrink: 0;
-      }
-    }
-  }
-}
-
-/* Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .login {
-    &__form {
-      padding: 30px 20px;
+    &__container {
+      flex-direction: column;
     }
 
-    &__title {
-      font-size: 26px;
+    &__left {
+      display: none;
+    }
+
+    &__right {
+      padding: 30px 20px;
     }
   }
 }

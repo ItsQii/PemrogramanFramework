@@ -40,7 +40,7 @@ const AppShell = (props: AppShellProps) => {
       className={roboto.className}
       style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
     >
-      {/* 🔥 FIX: top-trigger tetap ada tapi tidak ganggu klik */}
+
       {!disableNavbar.includes(pathname) && (
         <div
           className="top-trigger"
