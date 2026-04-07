@@ -5,23 +5,107 @@ exports[`About Page renders about page correctly 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        <h1
-          data-testid="title"
+      <main
+        class="main"
+      >
+        <section
+          class="center"
         >
-          About Page
-        </h1>
-      </div>
+          <h1>
+            About Page
+          </h1>
+          <p>
+            Informasi Profil Pengembang
+          </p>
+        </section>
+        <div
+          class="aboutCardLarge"
+        >
+          <h2>
+            About me
+          </h2>
+          <ul
+            class="infoList"
+          >
+            <li>
+              <strong>
+                Nama
+              </strong>
+              : Ahmad Rifqi Hendriansyah
+            </li>
+            <li>
+              <strong>
+                Kelas
+              </strong>
+              : TI-3D
+            </li>
+            <li>
+              <strong>
+                NIM
+              </strong>
+              : 2341720134
+            </li>
+            <li>
+              <strong>
+                Jurusan
+              </strong>
+              : D-IV Teknik Informatika
+            </li>
+          </ul>
+        </div>
+      </main>
     </div>
   </body>,
   "container": <div>
-    <div>
-      <h1
-        data-testid="title"
+    <main
+      class="main"
+    >
+      <section
+        class="center"
       >
-        About Page
-      </h1>
-    </div>
+        <h1>
+          About Page
+        </h1>
+        <p>
+          Informasi Profil Pengembang
+        </p>
+      </section>
+      <div
+        class="aboutCardLarge"
+      >
+        <h2>
+          About me
+        </h2>
+        <ul
+          class="infoList"
+        >
+          <li>
+            <strong>
+              Nama
+            </strong>
+            : Ahmad Rifqi Hendriansyah
+          </li>
+          <li>
+            <strong>
+              Kelas
+            </strong>
+            : TI-3D
+          </li>
+          <li>
+            <strong>
+              NIM
+            </strong>
+            : 2341720134
+          </li>
+          <li>
+            <strong>
+              Jurusan
+            </strong>
+            : D-IV Teknik Informatika
+          </li>
+        </ul>
+      </div>
+    </main>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
