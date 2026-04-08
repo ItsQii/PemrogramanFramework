@@ -19,13 +19,14 @@ export default function withAuth(
       const token = await getToken({
         req,
         secret: process.env.NEXTAUTH_SECRET,
+        secureCookie: process.env.NODE_ENV === "production",
       });
 
       console.log("TOKEN DI MIDDLEWARE:", token);
       if (!token) {
-        if (pathname.startsWith("/profile")) {
-          return NextResponse.redirect(new URL("/auth/login", req.url));
-        }
+        // if (pathname.startsWith("/profile")) {
+        //   return NextResponse.redirect(new URL("/auth/login", req.url));
+        // }
 
         const Url = new URL("/auth/login", req.url);
         Url.searchParams.set("callbackUrl", encodeURI(req.url));
