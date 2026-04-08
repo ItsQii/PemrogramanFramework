@@ -3,7 +3,6 @@ import type { NextRequest } from "next/server";
 import withAuth from "./middleware/withAuth";
 
 export function mainMiddleware(request: NextRequest) {
-  // Tidak perlu getToken lagi di sini, sudah dihandle withAuth
   return NextResponse.next();
 }
 
