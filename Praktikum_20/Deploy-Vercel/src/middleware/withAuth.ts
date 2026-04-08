@@ -21,6 +21,7 @@ export default function withAuth(
         secret: process.env.NEXTAUTH_SECRET,
       });
 
+      console.log("TOKEN DI MIDDLEWARE:", token);
       if (!token) {
         if (pathname.startsWith("/profile")) {
           return NextResponse.redirect(new URL("/auth/login", req.url));
@@ -36,6 +37,7 @@ export default function withAuth(
       }
     }
     
+    console.log("TOKEN SUDAH ADA");
     return middleware(req, next);
   };
 }
